@@ -1,28 +1,39 @@
 (function(window) {
 	'use strict';
 	 var components = [];
+	 var controllers = [];
+	 var bindings = [];
+	 var interpolationMatches = ['{', '}'];
 	 var Barbarian = function() {
 	 	return {
-	 		render: function() {
+	 		// custom interpolation method 
+	 		interpolate: function(controller) {
+	 			var hasBinding = function(element) {
+	 				return element.textContent.indexOf(interpolationMatches[0]) > -1 && element.textContent.indexOf(interpolationMatches[1]) > -1
+	 			}
+	 			var startPoint = document.querySelector('[barbarian-controller =' + controller.name + ']');
+	 			if(startPoint !== null) {
+	 				// lets bind some properties!
+	 				var children = Array.from(startPoint.children);
 
+	 				// loop through node list and interpolate 
+	 				children.forEach(function(child) {
+	 					if(hasBinding(child) === true) {
+	 						var value = child.textContent.slice(1, child.textContent.lastIndexOf('}'));
+	 						if(value !== null && controller.properties.hasOwnProperty(value)) {
+	 							child.textContent = controller.properties[value];
+	 						}
+	 					}
+	 				});
+	 			}
 	 		},
-	 		request: function() {
-
-	 		},
-	 		route: function() {
-
-	 		},
-	 		interpolate: function() {
-
-	 		},
-	 		bind: function() {
-
-	 		},
-	 		updateBinding: function(prop, value, name) {
-	 			var component = components.find(function(component) {
-	 				return component.name === name;
-	 			});
-	 			component.element.setAttribute('data-'+prop, value);
+	 		makeController: function(name, properties) {
+	 			var controller = {
+	 				name: name,
+	 				properties: properties
+	 			};
+	 			controllers.push(controller);
+	 			this.interpolate(controller);
 	 		},
 	 		makeComponent: function(object) {
 	 			const name = object.name;

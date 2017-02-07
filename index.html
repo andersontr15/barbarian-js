@@ -8,19 +8,33 @@
 <script>
 	window.onload = function() {
 		var barbarian = new Barbarian();
+		barbarian.makeController('Main', {
+			name: 'Theo',
+			age: 23
+		});
+		barbarian.makeController('Home', {
+			height: 69,
+			weight: 200
+		});
 		barbarian.makeComponent({
 			name: 'tester',
-			text: 'First component',
+			text: 'hello',
 			selector: 'h1',
 			bindTo: 'body',
 			properties: {
-				name: 'Theo',
-				age: 23
+				name: 'Theo'
 			}
-		});
-		barbarian.updateBinding('name', 'Theodore', 'tester');
+		})
 	}
 </script>
 <body>
+	<div barbarian-controller="Main">
+		<h3>{name}</h3>
+		<h3>{age}</h3>
+	</div>
+	<div barbarian-controller="Home">
+			<h5>{height}</h5>
+			<h5>{weight}</h5>
+	</div>
 </body>
 </html>
