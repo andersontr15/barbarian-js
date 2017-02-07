@@ -6,6 +6,8 @@ The purpose of this framework is to reduce bloat often found in JavaScript frame
 Functionality of this framework will include: interpolation, routing, rendering, component architecture
 and encapsulation
 
+![](./barbarian.png?raw=true)
+
 ## API 
 
 #### createModule
