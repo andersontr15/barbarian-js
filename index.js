@@ -11,21 +11,23 @@
 	 			var hasBinding = function(element) {
 	 				return element.textContent.indexOf(interpolationMatches[0]) > -1 && element.textContent.indexOf(interpolationMatches[1]) > -1
 	 			}
-	 			var startPoint = document.querySelector('[barbarian-controller =' + controller.name + ']');
-	 			if(startPoint !== null) {
-	 				// lets bind some properties!
-	 				var children = Array.from(startPoint.children);
+	 			var startPoint = Array.from(document.querySelectorAll('[barbarian-controller =' + controller.name + ']'));
+	 			startPoint.forEach(function(c) {
+		 				if(c !== null) {
+		 					// lets bind some properties!
+		 				var children = Array.from(c.children);
 
-	 				// loop through node list and interpolate 
-	 				children.forEach(function(child) {
-	 					if(hasBinding(child) === true) {
-	 						var value = child.textContent.slice(1, child.textContent.lastIndexOf('}'));
-	 						if(value !== null && controller.properties.hasOwnProperty(value)) {
-	 							child.textContent = controller.properties[value];
-	 						}
-	 					}
-	 				});
-	 			}
+		 				// loop through node list and interpolate 
+		 				children.forEach(function(child) {
+		 					if(hasBinding(child) === true) {
+		 						var value = child.textContent.slice(1, child.textContent.lastIndexOf('}'));
+		 						if(value !== null && controller.properties.hasOwnProperty(value)) {
+		 							child.textContent = controller.properties[value];
+		 						}
+		 					}
+		 				});
+	 				}
+	 			})
 	 		},
 	 		makeController: function(name, properties) {
 	 			var controller = {
