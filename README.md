@@ -8,8 +8,8 @@ and encapsulation
 
 ## API 
 
--makeController
+makeController
 
--makeComponent
+makeComponent
 
--interpolate
+interpolate
