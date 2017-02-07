@@ -50,6 +50,6 @@
 	 			return element;
 	 		}
 	 	};
-	 }
+	 } 
 	 window.Barbarian = Barbarian;
 }(window));
