@@ -10,7 +10,7 @@ and encapsulation
 
 #### createModule
 
--This method will instantiate a new module and return to you the freshly created object
+- This method will instantiate a new module and return to you the freshly created object
 
 #### makeController
 
