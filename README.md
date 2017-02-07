@@ -1,6 +1,6 @@
 # Barbarian.js
 
--> ![](./barbarian.png?raw=true) <-
+![](./barbarian.png?raw=true)
 
 Primitive JavaScript framework taking advantage of vanilla JavaScript and DOM scripting.
 
