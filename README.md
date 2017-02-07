@@ -8,19 +8,19 @@ and encapsulation
 
 ## API 
 
-###createModule
+#### createModule
 
 -This method will instantiate a new module and return to you the freshly created object
 
-###makeController
+#### makeController
 
 - Calling this method on on the module will create a controller and add it to the module
 - Arguments: name, properties
 
-###makeComponent
+#### makeComponent
 
 - Calling this method will create a new component for you and add it to the module
 - Arguments: name, properties, selector, bindTo
 
-###interpolate
+#### interpolate
 - This method will attempt to interpolate all of your controllers bindings within the { } syntax. 
