@@ -1,11 +1,8 @@
 (function(window) {
  'use strict';
-  var components = [];
-  var controllers = [];
-  var bindings = [];
+  var modules = [];
   var interpolationMatches = ['{', '}'];
-  var Barbarian = function() {
-   return {
+  var Barbarian = {
     // custom interpolation method 
     interpolate: function(controller) {
      var hasBinding = function(element) {
@@ -29,13 +26,29 @@
       }
      })
     },
+    createModule: function(name, dependencies) {
+     var module = {
+      name: name,
+      dependencies: dependencies,
+      controllers: [],
+      components: [],
+      services: [],
+      makeController: this.makeController,
+      makeComponent: this.makeComponent,
+      interpolate: this.interpolate
+     };
+     modules.push(module);
+     return module;
+    },
     makeController: function(name, properties) {
      var controller = {
       name: name,
       properties: properties
      };
-     controllers.push(controller);
      this.interpolate(controller);
+     this.controllers.push(controller);
+     console.log(this);
+     return this;
     },
     makeComponent: function(object) {
      const name = object.name;
@@ -52,17 +65,8 @@
      var elementToBindTo = document.querySelector(bindTo);
 
      elementToBindTo.appendChild(element);
-     components.push({
-      name: name,
-      text: text,
-      selector: selector,
-      bindTo: bindTo,
-      properties: properties,
-      element: element
-     });
      return element;
     }
    };
-  } 
-  window.Barbarian = Barbarian;
+   window.Barbarian = Barbarian;
 }(window));
