@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Barbarian JS</title>
+</head>
+<script src="index.js"></script>
+<script>
+	window.onload = function() {
+		var barbarian = new Barbarian();
+		barbarian.makeComponent({
+			name: 'tester',
+			text: 'First component',
+			selector: 'h1',
+			bindTo: 'body',
+			properties: {
+				name: 'Theo',
+				age: 23
+			}
+		});
+		barbarian.updateBinding('name', 'Theodore', 'tester');
+	}
+</script>
+<body>
+</body>
+</html>
