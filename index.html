@@ -8,12 +8,17 @@
 <script>
 	window.onload = function() {
 
-		var module = Barbarian.createModule('app', []);
+		var handleEvents = function() {
+			console.log('running')
+		}
+
+		var module = Barbarian.createModule('app');
 
 		module.makeController('Home', {
 			name: 'Theo',
 			age: 23
-		})
+		});
+		// module.render('h1', 'test', 'div');
 
 		// barbarian.makeController('Main', {
 		// 	name: 'Theo',

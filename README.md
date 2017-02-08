@@ -15,6 +15,11 @@ and encapsulation
 
 - This method will instantiate a new module and return to you the freshly created object
 
+#### render 
+
+- For basic debugging, Barbarian.js will render an element to the page
+- Arguments: name, elementToBindTo, text
+
 #### makeController
 
 - Calling this method on on the module will create a controller and add it to the module
@@ -24,6 +29,10 @@ and encapsulation
 
 - Calling this method will create a new component for you and add it to the module
 - Arguments: name, properties, selector, bindTo
+
+#### makeService
+
+- Calling this method will create a new service to be injected within your module 
 
 #### interpolate
 - This method will attempt to interpolate all of your controllers bindings within the { } syntax. 
