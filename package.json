@@ -1,0 +1,23 @@
+{
+  "name": "barbarian",
+  "version": "1.0.0",
+  "description": "![](./barbarian.png?raw=true)",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andersontr15/Barbarian.js.git"
+  },
+  "keywords": [],
+  "author": "Theo <theoanderson3@gmail.com> (linkedin.com/in/andersontr15)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andersontr15/Barbarian.js/issues"
+  },
+  "homepage": "https://github.com/andersontr15/Barbarian.js#readme",
+  "devDependencies": {
+    "jest": "^18.1.0"
+  }
+}

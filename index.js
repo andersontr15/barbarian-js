@@ -25,12 +25,22 @@
       var hasBinding = function(element) {
         return element.textContent.indexOf(interpolationMatches[0]) > -1 && element.textContent.indexOf(interpolationMatches[1]) > -1
       }
-      var startPoint = Array.from(document.querySelectorAll('[barbarian-controller =' + controller.name + ']'));
+      var startPoint = Array.from(document.querySelectorAll('[barbarian-controller=' + controller.name + ']'));
+      // testing for a single property binding 
+      if(startPoint.length < 2) {
+        var element = startPoint[0];
+        if(hasBinding(element) === true) {
+          var value = element.textContent.slice(element.textContent.indexOf('{') + 1, element.textContent.lastIndexOf('}'));
+          if(value !== null && controller.properties.hasOwnProperty(value)){
+            element.textContent = controller.properties[value];
+            return element.textContent;
+          }
+        }
+      }
       startPoint.forEach(function(c) {
         if(c !== null) {
           // lets bind some properties!
           var children = Array.from(c.children);
-
           // loop through node list and interpolate
           children.forEach(function(child) {
             if(hasBinding(child) === true) {
@@ -96,4 +106,9 @@
     }
   };
   window.Barbarian = Barbarian;
+  // Exports for jest spec testing 
 }(window));
+
+module.exports = {
+    interpolate: window.Barbarian.interpolate
+};
