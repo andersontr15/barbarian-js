@@ -1,31 +1,55 @@
 window.onload = function() {
-
-  var router = new Barbarian.Router();
-
-  router.routeTo('test')
-  // GrandParent Module
-  var grandParentModule = Barbarian.createModule('GrandParent', []);
-
-  var grandParentController = grandParentModule.makeController('GrandParent', {
-    name: 'Grand Parent',
-    age: 78
+  var router = new Barbarian.Router({
+    routes: [
+      {
+        path: '/grandparent',
+        controller: 'GrandParent'
+      },
+      {
+        path: '/parent',
+        controller: 'Parent'
+      },
+      {
+        path: '/child',
+        controller: 'Child'
+      }
+    ]
   });
+  // using router
+  var buttons = Array.from(document.querySelectorAll('button'));
 
-  // Parent Module
-  var parentModule = Barbarian.createModule('Parent', []);
+  function handleClick(event) {
+    var route = event.target.getAttribute('route');
+    router.routeTo(route);
+  }
 
-  var parentController = parentModule.makeController('Parent', {
-    name: 'Parent',
-    age: 51,
-    dependencies: [grandParentModule]
-  });
+  buttons.forEach(function(button) {
+    button.addEventListener('click', handleClick, false)
+  })
 
-  // Child Module
-  var childModule = Barbarian.createModule('Child', []);
+  // // GrandParent Module
+  // var grandParentModule = Barbarian.createModule('GrandParent', []);
 
-  var childController = childModule.makeController('Child', {
-    name: 'Child',
-    age: 23,
-    dependencies: [parentModule, grandParentModule]
-  });
+  // var grandParentController = grandParentModule.makeController('GrandParent', {
+  //   name: 'Grand Parent',
+  //   age: 78
+  // });
+
+  // // Parent Module
+  // var parentModule = Barbarian.createModule('Parent', []);
+
+  // var parentController = parentModule.makeController('Parent', {
+  //   name: 'Parent',
+  //   age: 51,
+  //   dependencies: [grandParentModule]
+  // });
+
+  // // Child Module
+  // var childModule = Barbarian.createModule('Child', []);
+
+  // var childController = childModule.makeController('Child', {
+  //   name: 'Child',
+  //   age: 23,
+  //   dependencies: [parentModule, grandParentModule]
+  // });
 }

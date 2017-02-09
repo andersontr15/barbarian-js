@@ -3,16 +3,26 @@
   var modules = [];
   var interpolationMatches = ['{', '}'];
 
+  var saveData = function(data) {
+    window.localStorage.setItem(data.name, JSON.stringify(data))
+  }
+
   var Router = function(options) {
       return {
-        routes: [],
+        routes: options.routes || [],
         previousRoute: null,
         currentRoute: window.location.href,
         routeTo: function(path) {
-          this.currentRoute = path;
-        },
-        routesHistory: [],
-        withHash: false
+          var route = this.routes.filter(r => r.path === path)[0];
+          if(route) {
+            history.pushState({ controller: route.controller } , '', route.path);
+            window.localStorage.setItem('controller', route.controller);
+            document.querySelector('h3').innerHTML = route.path;
+          }
+          else {
+            throw new Error('No route found with this name')
+          }
+        }
       }
     }
   var Barbarian = {
@@ -109,6 +119,7 @@
   // Exports for jest spec testing 
 }(window));
 
-module.exports = {
-    interpolate: window.Barbarian.interpolate
-};
+// for testing only with node and jest 
+// module.exports = {
+//     interpolate: window.Barbarian.interpolate
+// };
