@@ -1,4 +1,8 @@
 window.onload = function() {
+
+  var router = new Barbarian.Router();
+
+  router.routeTo('test')
   // GrandParent Module
   var grandParentModule = Barbarian.createModule('GrandParent', []);
 

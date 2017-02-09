@@ -2,9 +2,26 @@
   'use strict';
   var modules = [];
   var interpolationMatches = ['{', '}'];
+
+  var Router = function(options) {
+      return {
+        routes: [],
+        previousRoute: null,
+        currentRoute: window.location.href,
+        routeTo: function(path) {
+          this.currentRoute = path;
+        },
+        routesHistory: [],
+        withHash: false
+      }
+    }
   var Barbarian = {
+    Router: Router,
     // custom interpolation method
     interpolate: function(controller) {
+      if(controller === undefined || !controller.name) {
+        throw new Error('Must be a valid controller!')
+      }
       var hasBinding = function(element) {
         return element.textContent.indexOf(interpolationMatches[0]) > -1 && element.textContent.indexOf(interpolationMatches[1]) > -1
       }
@@ -42,14 +59,17 @@
         services: [],
         makeController: this.makeController,
         makeComponent: this.makeComponent,
-        interpolate: this.interpolate
+        interpolate: this.interpolate,
+        Router: this.Router
       };
       modules.push(module);
       return module;
     },
     makeController: function(name, properties) {
       var controller = {
-        name: name,
+        // trim controller name so as to allow for white space without 
+        // throwing an exception
+        name: name.trim(),
         properties: properties,
         dependencies: properties.dependencies,
       };
@@ -58,11 +78,11 @@
       return this;
     },
     makeComponent: function(object) {
-      const name = object.name;
-      const text = object.text;
-      const selector = object.selector;
-      const bindTo = object.bindTo;
-      const properties = object.properties;
+      var name = object.name;
+      var text = object.text;
+      var selector = object.selector;
+      var bindTo = object.bindTo;
+      var properties = object.properties;
 
       var element = document.createElement(selector);
       element.textContent = text;

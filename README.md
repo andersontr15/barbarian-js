@@ -11,6 +11,11 @@ and encapsulation
 
 ## API 
 
+#### Router
+
+- Top level method provided by Barbarian.js to create a router 
+- Arguments: name, routes, routeTo, routeHistory, currentRoute
+
 #### createModule
 
 - This method will instantiate a new module and return to you the freshly created object
