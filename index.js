@@ -17,7 +17,7 @@
           // loop through node list and interpolate
           children.forEach(function(child) {
             if(hasBinding(child) === true) {
-              var value = child.textContent.slice(1, child.textContent.lastIndexOf('}'));
+              var value = child.textContent.slice(child.textContent.indexOf('{') + 1, child.textContent.lastIndexOf('}'));
               if(value !== null && controller.properties.hasOwnProperty(value)) {
                 if (controller.dependencies) {
                   child.textContent = controller.properties[value];
