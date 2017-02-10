@@ -4,10 +4,10 @@
     beforeAll(() => {
      this.tagName = 'h1';
      this.content = 'I am an h1';
-     
+
      this.element = {
-         tagName: this.tagName,
-         content: this.content
+       tagName: this.tagName,
+       content: this.content
      };
 
      this.div = document.createElement('div');
@@ -18,13 +18,13 @@
      this.expectedOuterHTML = '<h1>' + this.expectedTextContent + '</h1>';
 
     });
-   test("it creates and renders a simple h1 element with text", () => {
-      var result =  render(this.element, this.insertAfter);
-      expect(result.textContent).toBe(this.expectedTextContent);
-   });
-   test("it creates and returns an h1 element with the correct outerHTML", () => {
-      var result = render(this.element, this.insertAfter);
-      expect(result.outerHTML).toBe(this.expectedOuterHTML)
-   });
+    test("it creates and renders a simple h1 element with text", () => {
+       var result =  render(this.element, this.insertAfter);
+       expect(result.textContent).toBe(this.expectedTextContent);
+    });
+    test("it creates and returns an h1 element with the correct outerHTML", () => {
+       var result = render(this.element, this.insertAfter);
+       expect(result.outerHTML).toBe(this.expectedOuterHTML)
+    });
   });
 }());
