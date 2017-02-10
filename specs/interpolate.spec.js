@@ -1,33 +1,24 @@
 (function() {
 
-// Testing interpolate method of Barbarian.js 
+  const interpolate = require('../src/index').interpolate;
 
-const interpolate = require('../src/index').interpolate;
-
-// sample test
-test('it runs a test', () => {
- expect(typeof 'hello world').toBe('string')
-});
-
-// testing interpolation functionality of controllers 
-
-test('it interpolates 1 expression from Barbarian controllers', () => {
-  var view = '<h1>{name}</h1>';
-  var template = document.createElement('div');
-  template.innerHTML = view;
-  template.setAttribute('barbarian-controller', 'Test');
-  document.body.appendChild(template);  
-  var mockController = {
-   name: 'Test',
-   properties: {
-   name: 'Theo'
-   }
-  }
-  var expected = 'Theo'
-
-  var result = interpolate(mockController);
-
-  expect(result).toBe(expected);
-})
-
+  describe("it tests the basic functionality of the Barbarian interpolate method", () => {
+    beforeAll(() => {
+      this.view = '<h1>{name}</h1>';
+      this.template = document.createElement('div');
+      this.template.innerHTML = this.view;
+      this.template.setAttribute('barbarian-controller', 'Test');
+      document.body.appendChild(this.template);  
+      this.mockController = {
+        name: 'Test',
+        properties: { name: 'Theo'}
+      };
+    });
+    test('it interpolates 1 expression from Barbarian controllers', () => {
+      var expected = this.mockController.properties.name;
+      var result = interpolate(this.mockController);
+      
+      expect(result).toBe(expected);
+    })
+  });
 }());
