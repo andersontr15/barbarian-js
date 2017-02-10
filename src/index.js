@@ -113,13 +113,27 @@
 
       elementToBindTo.appendChild(element);
       return element;
+    },
+    render: function(element, insertAfter) {
+
+      var newElement = document.createElement(element.tagName);
+      newElement.textContent = element.content;
+
+      var nodeToAppendTo = document.querySelector(insertAfter);
+      nodeToAppendTo.appendChild(newElement);
+
+      return {
+        outerHTML: document.querySelector(element.tagName).outerHTML,
+        textContent: document.querySelector(element.tagName).textContent
+      }
     }
   };
   window.Barbarian = Barbarian;
   // Exports for jest spec testing 
 }(window));
 
-// for testing only with node and jest 
-// module.exports = {
-//     interpolate: window.Barbarian.interpolate
-// };
+
+module.exports = {
+    interpolate: window.Barbarian.interpolate,
+    render: window.Barbarian.render
+};
