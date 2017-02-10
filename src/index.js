@@ -117,10 +117,9 @@
     }
   };
   window.Barbarian = Barbarian;
-  // Exports for jest spec testing 
 }(window));
 
-
+// For jest testing: ../specs
 module.exports = {
     interpolate: window.Barbarian.interpolate,
     render: window.Barbarian.render
