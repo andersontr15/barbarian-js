@@ -22,7 +22,7 @@
      test("it creates and renders a simple h1 element with text", () => {
 
         var result =  render(this.element, this.insertAfter);
-        expect(result.textContent).toBe(expectedTextContent);
+        expect(result.textContent).toBe(this.expectedTextContent);
     });
 
     test("it creates and returns an h1 element with the correct outerHTML", () => {
