@@ -2,7 +2,7 @@
 
 // Testing interpolate method of Barbarian.js 
 
-const interpolate = require('../index').interpolate;
+const interpolate = require('../src/index').interpolate;
 
 // sample test
 test('it runs a test', () => {
