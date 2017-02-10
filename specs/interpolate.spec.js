@@ -1,7 +1,5 @@
 (function() {
-
   const interpolate = require('../src/index').interpolate;
-
   describe("it tests the basic functionality of the Barbarian interpolate method", () => {
     beforeAll(() => {
      this.view = '<h1>{name}</h1>';
@@ -17,7 +15,6 @@
     test('it interpolates 1 expression from Barbarian controllers', () => {
      var expected = this.mockController.properties.name;
      var result = interpolate(this.mockController);
-
      expect(result).toBe(expected);
     })
   });
